@@ -1,8 +1,8 @@
 package aoa.guessers;
 
 import aoa.utils.FileUtils;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class PatternAwareLetterFreqGuesser implements Guesser {
     private final List<String> words;
@@ -16,7 +16,29 @@ public class PatternAwareLetterFreqGuesser implements Guesser {
      *  PATTERN. */
     public char getGuess(String pattern, List<Character> guesses) {
         // TODO: Fill in this method.
-        return '?';
+        List<String> newWords = getNewWords(pattern);
+        return LFGHelper.getMaxFrequencyChar(newWords, guesses);
+    }
+
+    /** Return the new list of words */
+    public List<String> getNewWords(String pattern) {
+        Map<Integer, Character> patternMap = LFGHelper.getPatternMap(pattern);
+        List<String> newWords = new ArrayList<>();
+        for(String elem: words) {
+            if(pattern.length() != elem.length()){
+                continue;
+            }
+            boolean flag = true;
+            for(Integer i: patternMap.keySet()){
+                if(elem.charAt(i) != patternMap.get(i)) {
+                    flag = false;
+                }
+            }
+            if(flag){
+                newWords.add(elem);
+            }
+        }
+        return newWords;
     }
 
     public static void main(String[] args) {
