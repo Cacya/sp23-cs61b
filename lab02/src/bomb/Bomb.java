@@ -60,7 +60,7 @@ public class Bomb {
         Set<Integer> numbers = new HashSet<>();
         while (numbers.size() < 100000) {
             numbers.add(r.nextInt());
-        }
+        }//-81201430
 
         boolean correct = false;
         int i = 0;
