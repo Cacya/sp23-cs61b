@@ -6,6 +6,7 @@ import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Experiments {
@@ -60,8 +61,18 @@ public class Experiments {
         List<Integer> opCounts = new ArrayList<>();
 
         // TODO: YOUR CODE HERE
+        for (int N = 1000; N <= 12800000; N *= 2) {
+            Ns.add(N);
+            opCounts.add(N);
+            Stopwatch sw = new Stopwatch();
+            AList<Integer> L = new AList();
+            for(int i = 0; i < N; i++) {
+                L.addLast(1);
+            }
+            times.add(sw.elapsedTime());
+        }
 
-        return null;
+        return new TimingData(Ns, times, opCounts);
     }
 
 
@@ -71,16 +82,29 @@ public class Experiments {
         List<Integer> opCounts = new ArrayList<>();
 
         // TODO: YOUR CODE HERE
+        for(int N = 1000; N <= 128000; N *= 2) {
+            int M = 10000;
+            Ns.add(N);
+            opCounts.add(M);
+            SLList<Integer> L = new SLList();
+            for(int i = 0; i < N; i++) {
+                L.addLast(1);
+            }
+            Stopwatch sw = new Stopwatch();
+            for(int i = 0; i < M; i++) {
+                int last = L.getLast();
+            }
+            times.add(sw.elapsedTime());
+        }
 
-        return null;
-
+        return new TimingData(Ns, times, opCounts);
     }
 
     public static void main(String[] args) {
         // TODO: Modify the following line to change the experiment you're running
-        TimingData td = exampleFibonacciExperiment();
+        TimingData td = timeAListConstruction();
         // Modify this line to make the chart title make sense
-        String title = "Naive Recursive Fibonacci";
+        String title = "Naive AList, Bad Resizing";
 
         // Convert "times" (in seconds) and "opCounts" to nanoseconds / op
         List<Double> timesUsPerOp = new ArrayList<>();
