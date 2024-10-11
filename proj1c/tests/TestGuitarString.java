@@ -1,7 +1,7 @@
 /* Imports the required audio library from the
  * edu.princeton.cs.algs4 package. */
 import edu.princeton.cs.algs4.StdAudio;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 import gh2.GuitarString;
 
 import static com.google.common.truth.Truth.assertThat;
