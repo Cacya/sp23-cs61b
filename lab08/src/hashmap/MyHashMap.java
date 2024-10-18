@@ -96,8 +96,8 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     public void clear() {
         buckets = createTable(16);
         M = 16;
-        loads = 0;
         size = 0;
+        loads = 0;
     }
 
     /**
