@@ -315,4 +315,12 @@ public class TestMyHashMap {
             return false;
         }
     }
+
+    /** My Tests. */
+    @Test
+    public void test() {
+        MyHashMap<String, String> a = new MyHashMap<>();
+        String s = "12313sas";
+        System.out.println(Math.floorMod(s.hashCode(), 16));
+    }
 }
